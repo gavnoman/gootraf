@@ -43,7 +43,7 @@ server {
 }
 EOF
 
-ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
+ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/"
 
 systemctl restart nginx
 
