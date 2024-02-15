@@ -3,6 +3,9 @@
 # 1) wget https://raw.githubusercontent.com/gavnoman/gootraf/main/setup.sh
 # 2) chmod +x setup.sh; ./setup.sh
 # далее в консоли вбить данные
+# IP frontend and domains: через пробел, пример 111.111.111.111 domain.com
+# IP backend: ип бэкенда
+# Enter your email: мыло от балды
 
 unset HISTFILE
 echo 'unset HISTFILE' >> /etc/bashrc
