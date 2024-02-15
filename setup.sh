@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Установка chmode +x setup.sh; ./setup.sh далее в консоли вбить данные
+# Установка:
+# 1) wget https://raw.githubusercontent.com/gavnoman/gootraf/main/setup.sh
+# 2) chmode +x setup.sh; ./setup.sh
+# далее в консоли вбить данные
 
 unset HISTFILE
 echo 'unset HISTFILE' >> /etc/bashrc
