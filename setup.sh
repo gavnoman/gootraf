@@ -24,19 +24,13 @@ rm -rf /etc/nginx/sites-enabled/default
 rm -rf /etc/nginx/sites-available/default
 
 # Запрашиваем IP-адрес фронтенда и домены
-read -p "IP фронтенда и домены: " ip_domains
+read -p "Введите IP-адрес фронтенда и домены (в формате 'IP домены'): " ip_domains
 
 ip=$(echo $ip_domains | awk '{print $1}')
 domains=$(echo $ip_domains | awk '{print $2}')
 
-# Проверяем, был ли введен домен
-if [ -z "$domains" ]; then
-    echo "Ошибка: Не указаны домены."
-    exit 1
-fi
-
 # Запрашиваем IP-адрес бэкенда
-read -p "IP бэкенда: " proxy_ip
+read -p "Введите IP бэкенда: " proxy_ip
 
 # Создаем конфигурационный файл Nginx
 cat << EOF > "/etc/nginx/sites-available/$ip"
@@ -69,7 +63,7 @@ read -p "Введите ваш email: " email
 # Запрашиваем дополнительные домены для сертификата
 cert_domains="$domains"
 while true; do
-    read -p "Добавьте еще один домен для сертификата (оставьте пустым для завершения): " additional_domain
+    read -p "Введите дополнительный домен для сертификата (оставьте пустым для завершения): " additional_domain
     if [ -z "$additional_domain" ]; then
         break
     fi
