@@ -1,25 +1,38 @@
 #!/bin/bash
 
+# Отключаем запись истории команд в bash
 unset HISTFILE
 echo 'unset HISTFILE' >> /etc/bashrc
 rm -f ~/.bash_history
+
+# Останавливаем и отключаем rsyslog
 systemctl stop rsyslog && systemctl disable rsyslog
+
+# Обновляем список пакетов и устанавливаем необходимые пакеты
 apt-get update
-apt-get install -y nginx
+apt-get install -y nginx ufw
+
+# Запускаем и включаем Nginx
 systemctl start nginx
 systemctl enable nginx
-apt-get install -y ufw
+
+# Разрешаем доступ к Nginx
 ufw allow 'Nginx Full'
+
+# Удаляем конфигурации по умолчанию
 rm -rf /etc/nginx/sites-enabled/default
 rm -rf /etc/nginx/sites-available/default
 
-read -p "IP frontend and domains: " ip_domains
+# Запрашиваем IP-адрес фронтенда и домены
+read -p "IP фронтенда и домены: " ip_domains
 
 ip=$(echo $ip_domains | awk '{print $1}')
 domains=$(echo $ip_domains | awk '{print $2}')
 
-read -p "IP backend: " proxy_ip
+# Запрашиваем IP-адрес бэкенда
+read -p "IP бэкенда: " proxy_ip
 
+# Создаем конфигурационный файл Nginx
 cat << EOF > "/etc/nginx/sites-available/$ip"
 server {
   server_name $domains;
@@ -38,21 +51,25 @@ server {
 }
 EOF
 
+# Создаем символическую ссылку на конфигурацию в sites-enabled
 ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
 
+# Перезапускаем Nginx
 systemctl restart nginx
 
-read -p "Enter your email: " email
+# Запрашиваем email для сертификата Let's Encrypt
+read -p "Введите ваш email: " email
 
+# Запрашиваем дополнительные домены для сертификата
 cert_domains="$domains"
 while true; do
-    read -p "Add another domain for certificate (leave empty to finish): " additional_domain
+    read -p "Добавьте еще один домен для сертификата (оставьте пустым для завершения): " additional_domain
     if [ -z "$additional_domain" ]; then
         break
     fi
     cert_domains="$cert_domains,$additional_domain"
 done
 
+# Устанавливаем и настраиваем сертификат Let's Encrypt
 apt install -y certbot python3-certbot-nginx
 certbot --nginx -d "$cert_domains" --non-interactive --agree-tos --email "$email"
-
