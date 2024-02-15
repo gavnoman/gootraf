@@ -1,4 +1,9 @@
 #!/bin/bash
+# Вариант установки 1 chmode +x setup.sh; ./setup.sh далее в консоли вбить данные
+# Вариант установки 2 wget -O - https://raw.githubusercontent.com/gavnoman/gootraf/main/setup.sh | bash -s -- "IP1 DOMAIN" "PROXY_IP" "your.email@example.com"
+# IP1 DOMAIN - IP-адрес фронтенда и домен, разделенные пробелом.
+# PROXY_IP - IP-адрес бэкенда.
+# your.email@example.com - мыло от балды.
 
 unset HISTFILE
 echo 'unset HISTFILE' >> /etc/bashrc
