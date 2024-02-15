@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Установка:
+# Установка: Перед запуском скрипта, прописать А запись в панельке регера доменов.
 # 1) wget https://raw.githubusercontent.com/gavnoman/gootraf/main/setup.sh
 # 2) chmod +x setup.sh; ./setup.sh
 # далее в консоли вбить данные
