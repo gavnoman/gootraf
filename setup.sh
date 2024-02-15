@@ -29,6 +29,12 @@ read -p "IP фронтенда и домены: " ip_domains
 ip=$(echo $ip_domains | awk '{print $1}')
 domains=$(echo $ip_domains | awk '{print $2}')
 
+# Проверяем, был ли введен домен
+if [ -z "$domains" ]; then
+    echo "Ошибка: Не указаны домены."
+    exit 1
+fi
+
 # Запрашиваем IP-адрес бэкенда
 read -p "IP бэкенда: " proxy_ip
 
