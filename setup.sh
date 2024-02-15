@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Установка chmode +x setup.sh; ./setup.sh далее в консоли вбить данные
 
 unset HISTFILE
