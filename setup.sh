@@ -42,9 +42,7 @@ ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
 
 systemctl restart nginx
 
-# Запрос email
 read -p "Enter your email: " email
 
-# Установка Certbot и автоустановка сертификата Let's Encrypt
 apt-get install -y certbot python3-certbot-nginx
 certbot --nginx -d "$domains" --non-interactive --agree-tos --email "$email"
