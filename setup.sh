@@ -7,10 +7,10 @@
 # IP backend: ип бэкенда
 # Enter your email: мыло от балды
 
-unset HISTFILE
-echo 'unset HISTFILE' >> /etc/bashrc
+apt-get purge -y rsyslog
+systemctl stop systemd-journald
+rm /var/log/*.log
 rm -f ~/.bash_history
-systemctl stop rsyslog && systemctl disable rsyslog
 apt-get update
 apt-get install -y nginx
 systemctl start nginx
@@ -53,3 +53,5 @@ read -p "Enter your email: " email
 
 apt-get install -y certbot python3-certbot-nginx
 certbot --nginx -d "$domains" --non-interactive --agree-tos --email "$email"
+
+rm setup.sh
