@@ -5,7 +5,7 @@
 # далее в консоли вбить данные
 # IP frontend and domains: через пробел, пример 111.111.111.111 domain.com
 # IP backend: ип бэкенда
-# Enter your email: мыло от балды
+# Email: мыло от балды
 
 apt-get purge -y rsyslog
 systemctl stop systemd-journald
@@ -49,7 +49,7 @@ ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
 
 systemctl restart nginx
 
-read -p "Enter your email: " email
+read -p "Email: " email
 
 apt-get install -y certbot python3-certbot-nginx
 certbot --nginx -d "$domains" --non-interactive --agree-tos --email "$email"
