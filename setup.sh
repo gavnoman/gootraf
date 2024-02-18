@@ -22,11 +22,10 @@ ufw allow 'Nginx Full'
 
 rm -rf /etc/nginx/sites-enabled/default
 rm -rf /etc/nginx/sites-available/default
-read -p "IP frontend and domains: " ip_domains
 
+read -p "IP frontend and domains: " ip_domains
 ip=$(echo $ip_domains | awk '{print $1}')
 domains=$(echo $ip_domains | awk '{print $2, $3}')
-
 read -p "IP backend: " proxy_ip
 
 cat << EOF > "/etc/nginx/sites-available/$ip"
