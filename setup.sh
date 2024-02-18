@@ -12,15 +12,16 @@ systemctl stop systemd-journald
 systemctl disable systemd-journald
 rm /var/log/*.log
 rm -f ~/.bash_history
+
 apt-get update
 apt-get install -y nginx
 systemctl start nginx
 systemctl enable nginx
 apt-get install -y ufw
 ufw allow 'Nginx Full'
+
 rm -rf /etc/nginx/sites-enabled/default
 rm -rf /etc/nginx/sites-available/default
-
 read -p "IP frontend and domains: " ip_domains
 
 ip=$(echo $ip_domains | awk '{print $1}')
@@ -47,7 +48,6 @@ server {
 EOF
 
 ln -s "/etc/nginx/sites-available/$ip" "/etc/nginx/sites-enabled/$ip"
-
 systemctl restart nginx
 
 read -p "Email: " email
@@ -56,5 +56,4 @@ apt-get install -y certbot python3-certbot-nginx
 certbot --nginx -d "$domains" --non-interactive --agree-tos --email "$email"
 
 rm setup.sh
-
 echo "vse zaebis"
