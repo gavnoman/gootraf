@@ -7,17 +7,17 @@
 # IP backend: ип бэкенда
 # Email: мыло от балды
 
-apt-get purge -y rsyslog
+apt purge -y rsyslog
 systemctl stop systemd-journald
 systemctl disable systemd-journald
 rm /var/log/*.log
 rm -f ~/.bash_history
 
-apt-get update
-apt-get install -y nginx
+apt update
+apt install -y nginx
 systemctl start nginx
 systemctl enable nginx
-apt-get install -y ufw
+apt install -y ufw
 ufw allow 'Nginx Full'
 
 rm -rf /etc/nginx/sites-enabled/default
@@ -51,7 +51,7 @@ systemctl restart nginx
 
 read -p "Email: " email
 
-apt-get install -y certbot python3-certbot-nginx
+apt install -y certbot python3-certbot-nginx
 certbot --nginx -d "$domains" --non-interactive --agree-tos --email "$email"
 
 rm setup.sh
