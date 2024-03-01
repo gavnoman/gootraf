@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Install debian 12
+
 apt update
 apt install -y git
 git clone https://github.com/nazavod777/debank_checker_v2.git
