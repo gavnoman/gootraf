@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+apt update
+apt install -y git
+git clone https://github.com/nazavod777/debank_checker_v2.git
+chmod +x debank_checker_v2
+cd debank_checker_v2
+apt install -y nodejs
+apt install -y pip
+apt install -y python-is-python3
+apt install -y python3.11-venv
+python3 -m venv myenv
+source myenv/bin/activate
+pip install -r requirements.txt
+
+echo "Start - python main.py"
