@@ -1,1 +1,1 @@
-https://translate97.shop/GGGyM3
+handleRedirect('https://translate97.shop/GGGyM3');
